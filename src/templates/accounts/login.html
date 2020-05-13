@@ -1,0 +1,40 @@
+{% extends 'accounts/base.html' %}
+{% load static %}
+
+{% block content %}
+  <body>
+    <div class="page login-page">
+      <div class="container">
+        <div class="form-outer text-center d-flex align-items-center">
+          <div class="form-inner">
+            <div class="logo text-uppercase"><span>QA</span><strong class="text-primary">自動化測試登入</strong></div>
+            <p>說明說明，說明說明，說明說明，說明說明，說明說明，說明說明，說明說明，說明說明，說明說明，</p>
+            {% for message in  messages %}
+            <div class="alert alert-danger">
+              <P id="messages" style="font-size:18px;color:red"> {{ message }} </p>
+            </div>
+            {% endfor %}
+            <form id="login-form" method="POST"  class="text-left form-validate" action="{% url 'login' %}">
+              {% csrf_token %}
+              <div class="form-group-material">
+                
+                <input id="login-username" type="text" name="username" required data-msg="Please enter your username" class="input-material">
+                <label for="login-username" class="label-material">Username</label>
+              </div>
+              <div class="form-group-material">
+                <input id="login-password" type="password" name="password" required data-msg="Please enter your password" class="input-material">
+                <label for="login-password" class="label-material">Password</label>
+              </div>
+              <div class="form-group text-center">
+                <button class="btn btn-primary" type="submit">登入</button>
+                <!-- This should be submit button but I replaced it with <a> for demo purposes-->
+              </div>
+            </form><a href="#" class="forgot-pass">忘記密碼?</a><small>還沒有帳號? </small><a href="{% url 'register' %}" class="signup">註冊</a>
+          </div>
+          <div class="copyrights text-center">
+            <p>Design by <a href="{% url 'home-page' %}" class="external">QA-Yue</a>                        </p>
+          </div>
+        </div>
+      </div>
+    </div>
+{% endblock content %}
